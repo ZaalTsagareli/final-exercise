@@ -24,6 +24,42 @@
       "compilerOptions": {
         "tsConfigPath": "libs/doctor-lib/tsconfig.lib.json"
       }
+    },
+    "common": {
+      "type": "library",
+      "root": "libs/common",
+      "entryFile": "index",
+      "sourceRoot": "libs/common/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/common/tsconfig.lib.json"
+      }
+    },
+    "patient-lib": {
+      "type": "library",
+      "root": "libs/patient-lib",
+      "entryFile": "index",
+      "sourceRoot": "libs/patient-lib/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/patient-lib/tsconfig.lib.json"
+      }
+    },
+    "consultation-lib": {
+      "type": "library",
+      "root": "libs/consultation-lib",
+      "entryFile": "index",
+      "sourceRoot": "libs/consultation-lib/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/consultation-lib/tsconfig.lib.json"
+      }
+    },
+    "offers-lib": {
+      "type": "library",
+      "root": "libs/offers-lib",
+      "entryFile": "index",
+      "sourceRoot": "libs/offers-lib/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/offers-lib/tsconfig.lib.json"
+      }
     }
   }
 }

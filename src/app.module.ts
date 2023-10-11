@@ -3,6 +3,9 @@ import { DoctorModule } from './doctor/doctor.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { getDatabaseConfig } from 'libs/database';
+import { ConsultationsModule } from './consultations/consultations.module';
+import { PatientModule } from './patient/patient.module';
+import { OffersModule } from './offers/offers.module';
 
 @Module({
   imports: [
@@ -13,6 +16,9 @@ import { getDatabaseConfig } from 'libs/database';
       useFactory: getDatabaseConfig,
       inject: [ConfigService],
     }),
+    ConsultationsModule,
+    PatientModule,
+    OffersModule,
   ],
   controllers: [],
   providers: [],

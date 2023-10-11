@@ -4,6 +4,9 @@ import { Controller, Post } from '@nestjs/common';
 @Controller('doctor')
 export class DoctorController {
   public constructor(private readonly doctorService: DoctorLibService) {}
-  @Post('/')
-  public async test() {}
+  @Post('/signup')
+  public async signup() {}
+
+  @Post('/update-information')
+  public async updateInformation() {}
 }

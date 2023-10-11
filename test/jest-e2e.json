@@ -14,6 +14,14 @@
     "@app/doctor/(.*)": "<rootDir>/../libs/doctor/src/$1",
     "@app/doctor": "<rootDir>/../libs/doctor/src",
     "@app/doctor-lib/(.*)": "<rootDir>/../libs/doctor-lib/src/$1",
-    "@app/doctor-lib": "<rootDir>/../libs/doctor-lib/src"
+    "@app/doctor-lib": "<rootDir>/../libs/doctor-lib/src",
+    "@app/common/(.*)": "<rootDir>/../libs/common/src/$1",
+    "@app/common": "<rootDir>/../libs/common/src",
+    "@app/patient-lib/(.*)": "<rootDir>/../libs/patient-lib/src/$1",
+    "@app/patient-lib": "<rootDir>/../libs/patient-lib/src",
+    "@app/consultation-lib/(.*)": "<rootDir>/../libs/consultation-lib/src/$1",
+    "@app/consultation-lib": "<rootDir>/../libs/consultation-lib/src",
+    "@app/offers-lib/(.*)": "<rootDir>/../libs/offers-lib/src/$1",
+    "@app/offers-lib": "<rootDir>/../libs/offers-lib/src"
   }
 }

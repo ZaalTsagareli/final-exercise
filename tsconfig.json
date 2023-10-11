@@ -29,6 +29,30 @@
       ],
       "@app/doctor-lib/*": [
         "libs/doctor-lib/src/*"
+      ],
+      "@app/common": [
+        "libs/common/src"
+      ],
+      "@app/common/*": [
+        "libs/common/src/*"
+      ],
+      "@app/patient-lib": [
+        "libs/patient-lib/src"
+      ],
+      "@app/patient-lib/*": [
+        "libs/patient-lib/src/*"
+      ],
+      "@app/consultation-lib": [
+        "libs/consultation-lib/src"
+      ],
+      "@app/consultation-lib/*": [
+        "libs/consultation-lib/src/*"
+      ],
+      "@app/offers-lib": [
+        "libs/offers-lib/src"
+      ],
+      "@app/offers-lib/*": [
+        "libs/offers-lib/src/*"
       ]
     }
   }

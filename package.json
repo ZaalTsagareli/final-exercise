@@ -23,6 +23,7 @@
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^3.1.1",
     "@nestjs/core": "^10.0.0",
+    "@nestjs/jwt": "^10.1.1",
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/typeorm": "^10.0.0",
     "pg": "^8.11.3",
@@ -75,7 +76,11 @@
     ],
     "moduleNameMapper": {
       "^@app/doctor(|/.*)$": "<rootDir>/libs/doctor/src/$1",
-      "^@app/doctor-lib(|/.*)$": "<rootDir>/libs/doctor-lib/src/$1"
+      "^@app/doctor-lib(|/.*)$": "<rootDir>/libs/doctor-lib/src/$1",
+      "^@app/common(|/.*)$": "<rootDir>/libs/common/src/$1",
+      "^@app/patient-lib(|/.*)$": "<rootDir>/libs/patient-lib/src/$1",
+      "^@app/consultation-lib(|/.*)$": "<rootDir>/libs/consultation-lib/src/$1",
+      "^@app/offers-lib(|/.*)$": "<rootDir>/libs/offers-lib/src/$1"
     }
   }
 }
