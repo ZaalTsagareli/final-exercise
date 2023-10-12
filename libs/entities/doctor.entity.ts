@@ -59,6 +59,6 @@ export class DoctorEntity {
   @Column({ type: 'date', name: 'created_at', default: new Date() })
   createdAt: string;
 
-  @Column({ type: 'date', name: 'created_at', default: new Date() })
+  @Column({ type: 'date', name: 'updated_at', default: new Date() })
   updatedAt: string;
 }

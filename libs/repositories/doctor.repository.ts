@@ -4,7 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateDoctorDto } from '@app/doctor-lib/dtos';
 
-export class doctorRepository extends BaseRepository<DoctorEntity> {
+export class DoctorRepository extends BaseRepository<DoctorEntity> {
   private readonly doctorEntity: Repository<DoctorEntity>;
   public constructor(
     @InjectRepository(DoctorEntity) doctorRepo: Repository<DoctorEntity>,
@@ -16,7 +16,15 @@ export class doctorRepository extends BaseRepository<DoctorEntity> {
   public create(data: CreateDoctorDto): DoctorEntity {
     return this.doctorEntity.create(data);
   }
+
+  public async findOneByEmail(email: string): Promise<DoctorEntity> {
+    return await this.doctorEntity.findOneBy({ email: email });
+  }
   public async findOneById(id: number): Promise<DoctorEntity> {
-    return await this.doctorEntity.findOne({ where: { id: id } });
+    try {
+      return await this.doctorEntity.findOne({ where: { id: id } });
+    } catch (err) {
+      throw err;
+    }
   }
 }
