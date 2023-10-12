@@ -1,12 +1,17 @@
 import { DoctorLibService } from '@app/doctor-lib';
-import { Controller, Post } from '@nestjs/common';
+import { CreateDoctorDto } from '@app/doctor-lib/dtos';
+import { Body, Controller, Post } from '@nestjs/common';
 
 @Controller('doctor')
 export class DoctorController {
   public constructor(private readonly doctorService: DoctorLibService) {}
   @Post('/signup')
-  public async signup() {}
+  public async signup(@Body() doctor: CreateDoctorDto) {
+    return await this.doctorService.signUp();
+  }
 
   @Post('/update-information')
-  public async updateInformation() {}
+  public async updateInformation() {
+    return await this.doctorService.update();
+  }
 }

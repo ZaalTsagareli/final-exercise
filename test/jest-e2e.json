@@ -22,6 +22,8 @@
     "@app/consultation-lib/(.*)": "<rootDir>/../libs/consultation-lib/src/$1",
     "@app/consultation-lib": "<rootDir>/../libs/consultation-lib/src",
     "@app/offers-lib/(.*)": "<rootDir>/../libs/offers-lib/src/$1",
-    "@app/offers-lib": "<rootDir>/../libs/offers-lib/src"
+    "@app/offers-lib": "<rootDir>/../libs/offers-lib/src",
+    "@app/bcrypt-lib/(.*)": "<rootDir>/../libs/bcrypt-lib/src/$1",
+    "@app/bcrypt-lib": "<rootDir>/../libs/bcrypt-lib/src"
   }
 }

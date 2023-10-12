@@ -53,6 +53,12 @@
       ],
       "@app/offers-lib/*": [
         "libs/offers-lib/src/*"
+      ],
+      "@app/bcrypt-lib": [
+        "libs/bcrypt-lib/src"
+      ],
+      "@app/bcrypt-lib/*": [
+        "libs/bcrypt-lib/src/*"
       ]
     }
   }

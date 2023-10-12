@@ -60,6 +60,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/offers-lib/tsconfig.lib.json"
       }
+    },
+    "bcrypt-lib": {
+      "type": "library",
+      "root": "libs/bcrypt-lib",
+      "entryFile": "index",
+      "sourceRoot": "libs/bcrypt-lib/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/bcrypt-lib/tsconfig.lib.json"
+      }
     }
   }
 }
