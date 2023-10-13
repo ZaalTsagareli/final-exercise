@@ -1,6 +1,12 @@
 version: '3'
 
 services:
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379
+    volumes:
+      - redis_data:/data
   postgres:
     image: postgres:15-alpine
     env_file:
@@ -22,4 +28,5 @@ services:
       - /usr/src/app/node_modules
 
 volumes:
+  redis_data:
   prostgres_final:

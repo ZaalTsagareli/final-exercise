@@ -1,1 +1,1 @@
-export * from './local.guard';
+export * from './access.guard';

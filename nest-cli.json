@@ -69,6 +69,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/bcrypt-lib/tsconfig.lib.json"
       }
+    },
+    "redis-lib": {
+      "type": "library",
+      "root": "libs/redis-lib",
+      "entryFile": "index",
+      "sourceRoot": "libs/redis-lib/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/redis-lib/tsconfig.lib.json"
+      }
     }
   }
 }

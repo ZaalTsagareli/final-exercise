@@ -16,7 +16,6 @@ export class AccessTokenStrategy extends PassportStrategy(Strategy, 'jwt') {
     });
   }
   async validate(payload: JwtPayloadInterface) {
-    console.log(payload, 'xddddddddddddddd');
     const user = await this.doctorService.getUserById(
       parseInt(payload.id.toString()),
     );

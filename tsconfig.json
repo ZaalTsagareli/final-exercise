@@ -59,6 +59,12 @@
       ],
       "@app/bcrypt-lib/*": [
         "libs/bcrypt-lib/src/*"
+      ],
+      "@app/redis-lib": [
+        "libs/redis-lib/src"
+      ],
+      "@app/redis-lib/*": [
+        "libs/redis-lib/src/*"
       ]
     }
   }

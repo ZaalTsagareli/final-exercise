@@ -6,10 +6,12 @@ import { DoctorRepository } from 'libs/repositories';
 import { JwtModule } from '@nestjs/jwt';
 import { CommonModule } from '@app/common';
 import { JwtSecret } from 'libs/constants';
+import { RedisLibModule } from '@app/redis-lib';
 
 @Module({
   imports: [
     CommonModule,
+    RedisLibModule,
     TypeOrmModule.forFeature([DoctorEntity]),
     JwtModule.register({
       secret: JwtSecret,

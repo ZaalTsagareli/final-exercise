@@ -34,16 +34,4 @@ export class CreateDoctorDto {
   @IsNotEmpty()
   @IsString()
   password: string;
-
-  @IsNotEmpty()
-  @IsBoolean()
-  verified: boolean;
-
-  @IsOptional()
-  @IsDate()
-  createdAt: string;
-
-  @IsOptional()
-  @IsDate()
-  updatedAt: string;
 }

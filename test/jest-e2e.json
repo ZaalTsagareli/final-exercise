@@ -24,6 +24,8 @@
     "@app/offers-lib/(.*)": "<rootDir>/../libs/offers-lib/src/$1",
     "@app/offers-lib": "<rootDir>/../libs/offers-lib/src",
     "@app/bcrypt-lib/(.*)": "<rootDir>/../libs/bcrypt-lib/src/$1",
-    "@app/bcrypt-lib": "<rootDir>/../libs/bcrypt-lib/src"
+    "@app/bcrypt-lib": "<rootDir>/../libs/bcrypt-lib/src",
+    "@app/redis-lib/(.*)": "<rootDir>/../libs/redis-lib/src/$1",
+    "@app/redis-lib": "<rootDir>/../libs/redis-lib/src"
   }
 }
