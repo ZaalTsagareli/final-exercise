@@ -7,6 +7,7 @@ import {
   IsBoolean,
   IsDate,
   IsOptional,
+  isInt,
 } from 'class-validator';
 import { GenderEnum } from 'libs/enums';
 
@@ -30,6 +31,18 @@ export class CreateDoctorDto {
   @IsNotEmpty()
   @IsInt()
   phoneNumber: number;
+
+  @IsNotEmpty()
+  @IsInt()
+  countryId: number;
+
+  @IsNotEmpty()
+  @IsInt()
+  pricePerHour: number;
+
+  @IsNotEmpty()
+  @IsInt()
+  doctorProfessionTypeId: number;
 
   @IsNotEmpty()
   @IsString()

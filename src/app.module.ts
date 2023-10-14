@@ -6,8 +6,9 @@ import { getDatabaseConfig } from 'libs/database';
 import { ConsultationsModule } from './consultations/consultations.module';
 import { PatientModule } from './patient/patient.module';
 import { OffersModule } from './offers/offers.module';
-import { CountrySeeder } from 'libs/database/seeder/country.seeder';
-import { CountryEntity } from 'libs/database/entities';
+import { CountryEntity, DoctorTypesEntity } from 'libs/database/entities';
+import { Seeder } from 'libs/database/seeder/seeder';
+import { CountryRepository, DoctorTypeRepository } from 'libs/repositories';
 
 @Module({
   imports: [
@@ -18,12 +19,12 @@ import { CountryEntity } from 'libs/database/entities';
       useFactory: getDatabaseConfig,
       inject: [ConfigService],
     }),
-    TypeOrmModule.forFeature([CountryEntity]),
+    TypeOrmModule.forFeature([CountryEntity, DoctorTypesEntity]),
     ConsultationsModule,
     PatientModule,
     OffersModule,
   ],
   controllers: [],
-  providers: [CountrySeeder],
+  providers: [Seeder, CountryRepository, DoctorTypeRepository],
 })
 export class AppModule {}

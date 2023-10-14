@@ -1,15 +1,9 @@
 import { GenderEnum } from 'libs/enums';
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  OneToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
-import { CountryEntity, DoctorTypesEntity } from '.';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { ConsultationsEntity, CountryEntity } from '.';
 
-@Entity('doctor')
-export class DoctorEntity {
+@Entity('patient')
+export class PatientEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -42,30 +36,12 @@ export class DoctorEntity {
   })
   email: string;
 
-  @Column({ name: 'price_per_hour', nullable: false, type: 'varchar' })
-  pricePerHour: number;
-
-  @OneToOne(() => CountryEntity)
-  @JoinColumn()
-  country: CountryEntity;
-
-  @OneToOne(() => DoctorTypesEntity)
-  @JoinColumn()
-  type: DoctorTypesEntity;
-
   @Column({
     type: 'varchar',
     nullable: false,
     name: 'password',
   })
   password: string;
-
-  @Column({
-    type: 'bool',
-    nullable: false,
-    name: 'verified',
-  })
-  verified: boolean;
 
   @Column({ type: 'date', name: 'created_at', default: new Date() })
   createdAt: string;
