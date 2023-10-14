@@ -3,7 +3,7 @@ import { ConflictException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { DoctorRepository } from 'libs/repositories';
 import { CreateDoctorDto, LoginUserDto } from './dtos';
-import { DoctorEntity } from 'libs/entities';
+import { DoctorEntity } from 'libs/database/entities';
 import { MailService } from '@app/common/mail/mail.service';
 import { RedisService } from '@app/redis-lib';
 import { OtpDto } from './dtos/otp.dto';
@@ -82,7 +82,6 @@ export class DoctorLibService {
         const payload = {
           email: user.email,
           id: usrExsists.id,
-          number: usrExsists.phoneNumber,
         };
 
         return {

@@ -3,7 +3,7 @@ import { DoctorLibService } from '@app/doctor-lib';
 import { CreateDoctorDto, LoginUserDto } from '@app/doctor-lib/dtos';
 import { OtpDto } from '@app/doctor-lib/dtos/otp.dto';
 import { Body, Controller, Post, UseGuards } from '@nestjs/common';
-import { DoctorEntity } from 'libs/entities';
+import { DoctorEntity } from 'libs/database/entities';
 
 @Controller('doctor')
 export class DoctorController {

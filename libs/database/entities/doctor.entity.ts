@@ -1,5 +1,12 @@
 import { GenderEnum } from 'libs/enums';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { CountryEntity, DoctorTypesEntity } from '.';
 
 @Entity('doctor')
 export class DoctorEntity {
@@ -35,12 +42,16 @@ export class DoctorEntity {
   })
   email: string;
 
-  @Column({
-    type: 'integer',
-    nullable: false,
-    name: 'phone_number',
-  })
-  phoneNumber: number;
+  @Column({ name: 'price_per_hour', nullable: false, type: 'varchar' })
+  pricePerHour: number;
+
+  @OneToOne(() => CountryEntity)
+  @JoinColumn()
+  country: number;
+
+  @OneToOne(() => DoctorTypesEntity)
+  @JoinColumn()
+  type: number;
 
   @Column({
     type: 'varchar',

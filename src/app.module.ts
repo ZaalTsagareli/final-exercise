@@ -6,6 +6,8 @@ import { getDatabaseConfig } from 'libs/database';
 import { ConsultationsModule } from './consultations/consultations.module';
 import { PatientModule } from './patient/patient.module';
 import { OffersModule } from './offers/offers.module';
+import { CountrySeeder } from 'libs/database/seeder/country.seeder';
+import { CountryEntity } from 'libs/database/entities';
 
 @Module({
   imports: [
@@ -16,11 +18,12 @@ import { OffersModule } from './offers/offers.module';
       useFactory: getDatabaseConfig,
       inject: [ConfigService],
     }),
+    TypeOrmModule.forFeature([CountryEntity]),
     ConsultationsModule,
     PatientModule,
     OffersModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [CountrySeeder],
 })
 export class AppModule {}
