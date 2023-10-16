@@ -15,6 +15,7 @@ import { ConsultationLibService } from '@app/consultation-lib';
 import { DoctorLibService } from '@app/doctor-lib';
 import { HideDoctorDto } from './dtos/hide-doctor.dto';
 import { HideRepository, PatientRepository } from 'libs/repositories-lib';
+import { HelperService } from '@app/common/utils/helper.service';
 
 @Injectable()
 export class PatientLibService {
@@ -27,6 +28,7 @@ export class PatientLibService {
     private readonly consultationService: ConsultationLibService,
     private readonly doctorService: DoctorLibService,
     private readonly hidesRepository: HideRepository,
+    private readonly helperService: HelperService,
   ) {}
 
   public async getUserById(id: number): Promise<PatientEntity> {
@@ -132,12 +134,8 @@ export class PatientLibService {
         where: { patient: patient },
         relations: { doctor: true },
       });
-      const filteredDoctors = doctors.filter((doctor) => {
-        return !hideDoctors.some(
-          (hideDoctors) => hideDoctors.doctor.id === doctor.id,
-        );
-      });
-      return filteredDoctors;
+
+      return this.helperService.filterDoctors(doctors, hideDoctors);
     } catch (err) {
       throw err;
     }

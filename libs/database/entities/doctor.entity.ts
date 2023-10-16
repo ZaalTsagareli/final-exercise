@@ -56,7 +56,6 @@ export class DoctorEntity {
   @JoinColumn({ name: 'type_id' })
   type: DoctorTypesEntity;
 
-  // In DoctorEntity
   @OneToMany((type) => HidesEntity, (hides) => hides.doctor)
   hides: HidesEntity[];
 

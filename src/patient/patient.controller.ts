@@ -56,7 +56,6 @@ export class PatientController {
     @Param('consultationId') consultationId: string,
     @Request() { user }: { user: PatientRequestInterface },
   ) {
-    console.log(consultationId, 'xasdasd');
     if (typeof parseInt(consultationId) !== 'number') {
       throw new BadRequestException('parameter should be an int');
     }

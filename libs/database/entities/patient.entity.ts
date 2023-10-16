@@ -1,6 +1,5 @@
 import { GenderEnum } from 'libs/enums';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { ConsultationsEntity, CountryEntity } from '.';
 import { HidesEntity } from './hides.entity';
 
 @Entity('patient')

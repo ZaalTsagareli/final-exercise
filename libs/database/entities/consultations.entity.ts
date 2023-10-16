@@ -1,4 +1,3 @@
-import { GenderEnum } from 'libs/enums';
 import {
   Column,
   Entity,

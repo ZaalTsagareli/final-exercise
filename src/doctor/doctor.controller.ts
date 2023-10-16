@@ -1,4 +1,3 @@
-import { AccessGuardDoctor } from '@app/common/jwt/guards';
 import { DoctorLibService } from '@app/doctor-lib';
 import { CreateDoctorDto, LoginUserDto } from '@app/doctor-lib/dtos';
 import { OtpDto } from '@app/doctor-lib/dtos/otp.dto';
@@ -20,11 +19,5 @@ export class DoctorController {
   @Post('/login')
   public async login(@Body() data: LoginUserDto) {
     return await this.doctorService.validate(data);
-  }
-
-  @UseGuards(AccessGuardDoctor)
-  @Get('/')
-  public async updateInformation() {
-    return 'xd';
   }
 }

@@ -193,5 +193,4 @@ export const countries = [
   { id: 192, country: 'Yemen' },
   { id: 193, country: 'Zambia' },
   { id: 194, country: 'Zimbabwe' },
-  // ... (add more countries)
 ];
