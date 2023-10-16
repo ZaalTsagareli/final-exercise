@@ -5,15 +5,16 @@ import {
   Injectable,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { CountryRepository, DoctorRepository } from 'libs/repositories';
 import { CreateDoctorDto, LoginUserDto } from './dtos';
 import { ConsultationsEntity, DoctorEntity } from 'libs/database/entities';
 import { MailService } from '@app/common/mail/mail.service';
 import { RedisService } from '@app/redis-lib';
 import { OtpDto } from './dtos/otp.dto';
-import { DoctorTypeRepository } from 'libs/repositories/doctor-type.repository';
-import { LessThan, LessThanOrEqual, MoreThanOrEqual } from 'typeorm';
-import { PatientRequestInterface } from '@app/common/interfaces';
+import {
+  CountryRepository,
+  DoctorRepository,
+  DoctorTypeRepository,
+} from 'libs/repositories-lib';
 
 @Injectable()
 export class DoctorLibService {

@@ -4,7 +4,7 @@ import {
   HidesEntity,
   PatientEntity,
 } from 'libs/database/entities';
-import { BaseRepository } from '.';
+import { BaseRepository } from '..';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateDoctorDto } from '@app/doctor-lib/dtos';

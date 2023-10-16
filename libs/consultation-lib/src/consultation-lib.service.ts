@@ -1,11 +1,12 @@
 import { ConflictException, Injectable } from '@nestjs/common';
 import { CreateConsultationDto } from './dtos/create-consultation.dto';
+
+import { ConsultationsEntity, PatientEntity } from 'libs/database/entities';
 import {
   ConsultationsRepository,
   CountryRepository,
   DoctorTypeRepository,
-} from 'libs/repositories';
-import { ConsultationsEntity, PatientEntity } from 'libs/database/entities';
+} from 'libs/repositories-lib';
 
 @Injectable()
 export class ConsultationLibService {

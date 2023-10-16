@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { CountryRepository } from './country.repository';
-import { DoctorRepository } from './doctor.repository';
-import { DoctorTypeRepository } from './doctor-type.repository';
+import { CountryRepository } from './repositories/country.repository';
+import { DoctorRepository } from './repositories/doctor.repository';
+import { DoctorTypeRepository } from './repositories/doctor-type.repository';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import {
   ConsultationsEntity,
@@ -12,9 +12,9 @@ import {
   PatientEntity,
 } from 'libs/database/entities';
 import { HelperService } from '@app/common/utils/helper.service';
-import { PatientRepository } from './patient.repository';
-import { ConsultationsRepository } from './consultations.repository';
-import { HideRepository } from './hide.repository';
+import { PatientRepository } from './repositories/patient.repository';
+import { ConsultationsRepository } from './repositories/consultations.repository';
+import { HideRepository } from './repositories/hide.repository';
 
 @Module({
   imports: [

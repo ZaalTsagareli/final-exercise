@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { RedisKey, RedisValue } from 'ioredis';
-import { RedisRepository } from 'libs/repositories';
+import { RedisRepository } from 'libs/repositories-lib';
 
 @Injectable()
 export class RedisService {

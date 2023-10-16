@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { DoctorLibService } from './doctor-lib.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CountryRepository, DoctorRepository } from 'libs/repositories';
+import { CountryRepository, DoctorRepository } from 'libs/repositories-lib';
 import { JwtModule } from '@nestjs/jwt';
 import { CommonModule } from '@app/common';
 import { JwtSecret } from 'libs/constants';
@@ -11,8 +11,8 @@ import {
   DoctorEntity,
   DoctorTypesEntity,
 } from 'libs/database/entities';
-import { DoctorTypeRepository } from 'libs/repositories/doctor-type.repository';
-import { RepositoriesModule } from 'libs/repositories/repositories.module';
+import { DoctorTypeRepository } from 'libs/repositories-lib/doctor-type.repository';
+import { RepositoriesModule } from 'libs/repositories-lib/repositories.module';
 
 @Module({
   imports: [

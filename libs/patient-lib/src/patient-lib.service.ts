@@ -5,7 +5,6 @@ import {
   ConflictException,
   Injectable,
 } from '@nestjs/common';
-import { PatientRepository } from 'libs/repositories';
 import { CreatePatientDto, LoginPatientDto } from './dtos';
 import { CryptoService } from '@app/common/crypto';
 import { OtpDto } from '@app/doctor-lib/dtos/otp.dto';
@@ -15,7 +14,7 @@ import { PatientRequestInterface } from '@app/common/interfaces';
 import { ConsultationLibService } from '@app/consultation-lib';
 import { DoctorLibService } from '@app/doctor-lib';
 import { HideDoctorDto } from './dtos/hide-doctor.dto';
-import { HideRepository } from 'libs/repositories/hide.repository';
+import { HideRepository, PatientRepository } from 'libs/repositories-lib';
 
 @Injectable()
 export class PatientLibService {
