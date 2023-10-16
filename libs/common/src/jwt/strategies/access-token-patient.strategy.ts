@@ -3,27 +3,32 @@ import { UnauthorizedException } from '@nestjs/common/exceptions';
 import { Injectable } from '@nestjs/common';
 
 import { ExtractJwt, Strategy } from 'passport-jwt';
-import { DoctorLibService } from '@app/doctor-lib';
 import { JwtSecret } from 'libs/constants';
 import { JwtPayloadInterface } from '@app/common/interfaces/jwt.payload';
+import { PatientLibService } from '@app/patient-lib';
 
 @Injectable()
-export class AccessTokenStrategy extends PassportStrategy(Strategy, 'jwt') {
-  public constructor(private readonly doctorService: DoctorLibService) {
+export class AccessTokenPatientStrategy extends PassportStrategy(
+  Strategy,
+  'jwt-patient',
+) {
+  public constructor(private readonly patientService: PatientLibService) {
     super({
       secretOrKey: JwtSecret,
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     });
   }
   async validate(payload: JwtPayloadInterface) {
-    const user = await this.doctorService.getUserById(
+    if (payload.user == 'doctor') {
+      throw new UnauthorizedException('permissions denied');
+    }
+    const patient = await this.patientService.getUserById(
       parseInt(payload.id.toString()),
     );
 
-    if (!user || !user.verified) throw new UnauthorizedException();
+    if (!patient) throw new UnauthorizedException();
 
-    const { password, ...rest } = user;
-
+    const { password, ...rest } = patient;
     return rest;
   }
 }

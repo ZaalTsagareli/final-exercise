@@ -5,26 +5,23 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { getDatabaseConfig } from 'libs/database';
 import { ConsultationsModule } from './consultations/consultations.module';
 import { PatientModule } from './patient/patient.module';
-import { OffersModule } from './offers/offers.module';
-import { CountryEntity, DoctorTypesEntity } from 'libs/database/entities';
 import { Seeder } from 'libs/database/seeder/seeder';
-import { CountryRepository, DoctorTypeRepository } from 'libs/repositories';
+import { RepositoriesModule } from 'libs/repositories';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    DoctorModule,
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: getDatabaseConfig,
       inject: [ConfigService],
     }),
-    TypeOrmModule.forFeature([CountryEntity, DoctorTypesEntity]),
+    RepositoriesModule,
     ConsultationsModule,
     PatientModule,
-    OffersModule,
+    DoctorModule,
   ],
   controllers: [],
-  providers: [Seeder, CountryRepository, DoctorTypeRepository],
+  providers: [Seeder],
 })
 export class AppModule {}

@@ -3,10 +3,13 @@ import {
   Column,
   Entity,
   JoinColumn,
+  ManyToOne,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { CountryEntity, DoctorTypesEntity } from '.';
+import { HidesEntity } from './hides.entity';
 
 @Entity('doctor')
 export class DoctorEntity {
@@ -45,13 +48,17 @@ export class DoctorEntity {
   @Column({ name: 'price_per_hour', nullable: false, type: 'varchar' })
   pricePerHour: number;
 
-  @OneToOne(() => CountryEntity)
-  @JoinColumn()
+  @ManyToOne(() => CountryEntity, (country) => country.id)
+  @JoinColumn({ name: 'country_id' })
   country: CountryEntity;
 
-  @OneToOne(() => DoctorTypesEntity)
-  @JoinColumn()
+  @ManyToOne(() => DoctorTypesEntity, (tp) => tp.id)
+  @JoinColumn({ name: 'type_id' })
   type: DoctorTypesEntity;
+
+  // In DoctorEntity
+  @OneToMany((type) => HidesEntity, (hides) => hides.doctor)
+  hides: HidesEntity[];
 
   @Column({
     type: 'varchar',

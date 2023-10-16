@@ -1,9 +1,15 @@
-import { DoctorEntity } from 'libs/database/entities';
+import {
+  ConsultationsEntity,
+  DoctorEntity,
+  HidesEntity,
+  PatientEntity,
+} from 'libs/database/entities';
 import { BaseRepository } from '.';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateDoctorDto } from '@app/doctor-lib/dtos';
 import { HelperService } from '@app/common/utils/helper.service';
+import { PatientRequestInterface } from '@app/common/interfaces';
 
 export class DoctorRepository extends BaseRepository<DoctorEntity> {
   private readonly doctorEntity: Repository<DoctorEntity>;
@@ -33,5 +39,38 @@ export class DoctorRepository extends BaseRepository<DoctorEntity> {
     } catch (err) {
       throw err;
     }
+  }
+
+  public async getTheMostRelevantDoctors(
+    consultation: ConsultationsEntity,
+  ): Promise<DoctorEntity[]> {
+    const relevantDoctors = await this.doctorEntity
+      .createQueryBuilder('doctor')
+      .select([
+        'doctor.id',
+        'doctor.firstName',
+        'doctor.lastName',
+        'doctor.gender',
+        'doctor.email',
+        'doctor.pricePerHour',
+        'doctor.createdAt',
+      ])
+      .leftJoinAndSelect('doctor.country', 'country')
+      .leftJoinAndSelect('doctor.type', 'type')
+
+      .where('doctor.type_id = :type', { type: consultation.doctorType.id })
+      .andWhere('doctor.country_id = :country', {
+        country: consultation.country.id,
+      })
+      .andWhere('doctor.price_per_hour >= :minPrice', {
+        minPrice: consultation.pricePerHour - 100,
+      })
+      .orWhere('doctor.price_per_hour <= :maxPrice', {
+        maxPrice: consultation.pricePerHour + 100,
+      })
+      .take(10)
+      .getMany();
+
+    return relevantDoctors;
   }
 }

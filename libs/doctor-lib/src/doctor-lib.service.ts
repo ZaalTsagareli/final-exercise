@@ -7,11 +7,13 @@ import {
 import { JwtService } from '@nestjs/jwt';
 import { CountryRepository, DoctorRepository } from 'libs/repositories';
 import { CreateDoctorDto, LoginUserDto } from './dtos';
-import { DoctorEntity } from 'libs/database/entities';
+import { ConsultationsEntity, DoctorEntity } from 'libs/database/entities';
 import { MailService } from '@app/common/mail/mail.service';
 import { RedisService } from '@app/redis-lib';
 import { OtpDto } from './dtos/otp.dto';
 import { DoctorTypeRepository } from 'libs/repositories/doctor-type.repository';
+import { LessThan, LessThanOrEqual, MoreThanOrEqual } from 'typeorm';
+import { PatientRequestInterface } from '@app/common/interfaces';
 
 @Injectable()
 export class DoctorLibService {
@@ -57,10 +59,12 @@ export class DoctorLibService {
         'otp verification code',
         `otp : ${otp} \n note u have only 5 minutes to verife.`,
       );
-      await this.redisService.set(
-        otp.toString(),
-        JSON.stringify(databaseObject),
-      );
+
+      const redisObj = {
+        user: databaseObject,
+        type: 'doctor',
+      };
+      await this.redisService.set(otp.toString(), JSON.stringify(redisObj));
 
       return { success: true, message: 'otp verification code send to mail' };
     } catch (err) {
@@ -68,20 +72,19 @@ export class DoctorLibService {
     }
   }
 
-  public async verifeDoctor(data: OtpDto): Promise<DoctorEntity> {
+  public async verifeDoctor(otp: OtpDto): Promise<DoctorEntity> {
     try {
-      const otpExsists: DoctorEntity = JSON.parse(
-        await this.redisService.get(data.otp.toString()),
-      );
+      const data = JSON.parse(await this.redisService.get(otp.otp.toString()));
 
-      if (otpExsists) {
-        await this.redisService.delete(data.otp.toString());
-        const savedDoctor = await this.doctorRepository.save(otpExsists);
+      if (data && data['type'] == 'doctor') {
+        const doctor: DoctorEntity = data['user'];
+        await this.redisService.delete(otp.otp.toString());
+        const savedDoctor = await this.doctorRepository.save(doctor);
         delete savedDoctor.password;
         await this.mailService.sendEmail(
-          otpExsists.email,
+          doctor.email,
           'verified',
-          'u have been successfully verified on our website',
+          'u have been successfully verified on our website as a doctor',
         );
         return savedDoctor;
       }
@@ -104,25 +107,31 @@ export class DoctorLibService {
     try {
       const usrExsists = await this.doctorRepository.findOneByEmail(user.email);
 
-      const passwordIsCorrect = await this.cryptoService.comparePassword(
-        user.password,
-        usrExsists.password,
-      );
+      if (usrExsists) {
+        const passwordIsCorrect = await this.cryptoService.comparePassword(
+          user.password,
+          usrExsists.password,
+        );
+        if (passwordIsCorrect) {
+          const payload = {
+            email: user.email,
+            id: usrExsists.id,
+            user: 'doctor',
+          };
 
-      if (usrExsists && passwordIsCorrect) {
-        const payload = {
-          email: user.email,
-          id: usrExsists.id,
-          user: 'doctor',
-        };
-
-        return {
-          access_token: this.jwtService.sign(payload),
-        };
+          return {
+            access_token: this.jwtService.sign(payload),
+          };
+        }
       }
       throw new ConflictException('user creditionals are wrong');
     } catch (err) {
       throw err;
     }
+  }
+  public async getTheMostRelevantDoctors(
+    consultation: ConsultationsEntity,
+  ): Promise<DoctorEntity[]> {
+    return await this.doctorRepository.getTheMostRelevantDoctors(consultation);
   }
 }

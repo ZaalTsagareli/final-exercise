@@ -12,23 +12,19 @@ import {
   DoctorTypesEntity,
 } from 'libs/database/entities';
 import { DoctorTypeRepository } from 'libs/repositories/doctor-type.repository';
+import { RepositoriesModule } from 'libs/repositories/repositories.module';
 
 @Module({
   imports: [
     CommonModule,
     RedisLibModule,
-    TypeOrmModule.forFeature([DoctorEntity, CountryEntity, DoctorTypesEntity]),
+    RepositoriesModule,
     JwtModule.register({
       secret: JwtSecret,
       signOptions: { expiresIn: '1d' },
     }),
   ],
-  providers: [
-    DoctorLibService,
-    DoctorRepository,
-    DoctorTypeRepository,
-    CountryRepository,
-  ],
+  providers: [DoctorLibService],
   exports: [DoctorLibService],
 })
 export class DoctorLibModule {}

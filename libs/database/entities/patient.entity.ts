@@ -1,6 +1,7 @@
 import { GenderEnum } from 'libs/enums';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { ConsultationsEntity, CountryEntity } from '.';
+import { HidesEntity } from './hides.entity';
 
 @Entity('patient')
 export class PatientEntity {
@@ -42,6 +43,10 @@ export class PatientEntity {
     name: 'password',
   })
   password: string;
+
+  // In PatientEntity
+  @OneToMany((type) => HidesEntity, (hides) => hides.patient)
+  hides: HidesEntity[];
 
   @Column({ type: 'date', name: 'created_at', default: new Date() })
   createdAt: string;

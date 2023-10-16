@@ -1,8 +1,8 @@
-import { AccessGuard } from '@app/common/jwt/guards';
+import { AccessGuardDoctor } from '@app/common/jwt/guards';
 import { DoctorLibService } from '@app/doctor-lib';
 import { CreateDoctorDto, LoginUserDto } from '@app/doctor-lib/dtos';
 import { OtpDto } from '@app/doctor-lib/dtos/otp.dto';
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { DoctorEntity } from 'libs/database/entities';
 
 @Controller('doctor')
@@ -22,8 +22,8 @@ export class DoctorController {
     return await this.doctorService.validate(data);
   }
 
-  @UseGuards(AccessGuard)
-  @Post('/update-information')
+  @UseGuards(AccessGuardDoctor)
+  @Get('/')
   public async updateInformation() {
     return 'xd';
   }

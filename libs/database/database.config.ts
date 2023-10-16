@@ -9,6 +9,7 @@ import {
 } from 'libs/database/entities';
 
 import * as entities from './entities/index';
+import { HidesEntity } from './entities/hides.entity';
 export const getDatabaseConfig = async (
   configService: ConfigService,
 ): Promise<TypeOrmModuleOptions> => {
@@ -25,6 +26,7 @@ export const getDatabaseConfig = async (
       DoctorTypesEntity,
       PatientEntity,
       ConsultationsEntity,
+      HidesEntity,
     ],
 
     synchronize: true,
